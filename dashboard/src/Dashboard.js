@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Notifications from './Notifications'
 import ProjectList from './ProjectList'
-import { Button } from 'reactstrap';
+import { Button, ModalFooter } from 'reactstrap';
 import CameraComponent from './CameraComponent';
 import UnitComponent from './Unit_component';
 import {Container, Row, Col } from 'reactstrap';
@@ -24,17 +24,13 @@ class Dashboard extends React.Component {
   
     return (
       <div className="outer-dash">
-          <br/>
-
-          <MotifTest/>
-          <br/>
-
         <div className="main-dash">
           <div className="dashboard">
-              
-              <h1>Motif Dashboard</h1>
-              <h4>Available Cameras</h4>
-              <h6>Home Cage Units</h6>
+              <MotifTest/>
+              <h1>PNCL Motif Operational Dashboard</h1>
+              <h5>Available Cameras</h5>
+              <br/>
+              <h2>Home-Cage</h2>
               <Container>
                 <div className="UnitRow">
                   <Col><UnitComponent type_name={home_unit} start_id={unit_number++}/></Col>
@@ -51,7 +47,7 @@ class Dashboard extends React.Component {
                   <Col><UnitComponent type_name={home_unit} start_id={unit_number++}/></Col>
                 </div>
               </Container>
-              <h6>Behavior</h6>
+              <h2>Behavior</h2>
               <Container>
                 <div className="UnitRow">
                   <Col><UnitComponent type_name={behavior_unit} start_id={behav_number++}/></Col>

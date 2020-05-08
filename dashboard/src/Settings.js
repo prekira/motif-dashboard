@@ -40,9 +40,11 @@ class Settings extends React.Component {
     
     return (
      <div className="Settings">
-      <h3>Settings</h3>
+       <br/>
       <Button name="upload-settings" style={divStylebutton}>Upload Settings</Button>
       <br/>
+      <h2>Settings</h2>
+
       <p style={divStyle}>Exposure Time</p>
       <input name="exposure-time" type="number" onChange={this.handleInputChange}/>
       <p style={divStyle}>Gain</p>

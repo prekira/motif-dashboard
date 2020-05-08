@@ -140,3 +140,19 @@
   justify-content: top;
   font-size: medium;
 }
+.info-block2 {
+  color: black ;
+
+  text-align: left;
+  justify-content: top;
+  font-size: medium;
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+}

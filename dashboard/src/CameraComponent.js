@@ -19,8 +19,8 @@ class CameraComponent extends React.Component {
   handleInputChange() {
     this.setState({
       selectedCam: !this.state.selectedCam,
-      //below is temporary just to test dynamic rendering of colors
-      isRecording: !this.state.isRecording
+      // //below is temporary just to test dynamic rendering of colors
+      // isRecording: !this.state.isRecording
     });
    
   }

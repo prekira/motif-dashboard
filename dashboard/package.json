@@ -8,6 +8,7 @@
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",
     "all": "0.0.0",
+    "hls.js": "^0.13.3-canary.5469",
     "pivotal-ui": "^19.2.3",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -18,7 +19,7 @@
     "video-react": "^0.14.1"
   },
   "scripts": {
-    "start": "PORT=5000 react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -37,5 +38,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:5000"
 }

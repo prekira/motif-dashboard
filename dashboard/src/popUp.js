@@ -39,12 +39,12 @@ class PopUp extends React.Component {
         <Flyout {...{
           animationDuration: disableAnimation ? 0 : undefined,
           show,
-          header:  <h1>{this.props.name}</h1>,
+          header:  <div className="info-block2">{this.props.name}</div>,
           headerClassName: 'header-class',
           bodyClassName: 'body-class',
           onHide: () => this.setState({show: false})
         }}>
-         <CamInfo/>
+         <CamInfo url="http://172.22.131.188:8310/stream"/>
         </Flyout>
       </div>
     );

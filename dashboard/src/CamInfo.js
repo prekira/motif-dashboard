@@ -2,20 +2,27 @@ import React from 'react';
 import CameraComponent from './CameraComponent';
 import {DefaultButton, PrimaryButton, DangerButton, BrandButton} from 'pivotal-ui/react/buttons';
 import { Player } from 'video-react';
+import HLSSource from './HLSSource';
 import {Grid, FlexCol} from 'pivotal-ui/react/flex-grids';
 
 import "../node_modules/video-react/dist/video-react.css";
 class CamInfo extends React.Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       exposure_time:0,
       gain:0,
       framerate:0
     }
-    
   }
- 
+  async componentDidMount() {    
+        
+    const response = await fetch('/camfeed');
+    const data = await response.json();
+    this.setState({ ip: (data.ip),serial: data.serial});
+    //doesnt work: this.props.ip = data.ip;
+    //doesnt work: this.serial = data.serial;
+  }
 
   render() {
     const divStylebutton = {
@@ -27,12 +34,16 @@ class CamInfo extends React.Component {
     const wrapperstyle = {
       position: "relative",
       width:"250px", 
-      height:"250px"
+      height:"250px",
+      
+      padding: "0px 0px 0px 0px",
+      margin: "0px 0px 0px 0px"      
+
     }
     const playerstyle = {
       position:"absolute",
       top: "0",
-      left: "0"
+      left: "0",
       
     }
     const textstyle = {
@@ -46,16 +57,26 @@ class CamInfo extends React.Component {
     const blockstyle = {
       textAlign: "Left",
       alignItems: "top",
-      justifyContent: "center"
+      justifyContent: "center",
+      padding: "0px 0px 0px 0px",
+      margin: "0px 0px 0px 0px"
+
       
     }
+    
+    // className= "react-player"
+    // src="http://172.22.131.188:8310/stream"
+    // <Player>
+    //         <HLSSource   isVideoChild src="http://172.22.131.188:8310/stream"/>
+
+    //       </Player>
     return (
-     <div className="CamInfo">
+     <div className="CamInfo" style={blockstyle}>
        <div className="advanced-info">
           
           
-        <div className="info-block">
-          <PrimaryButton name="camera-button-style" style={divStylebutton}>Native Camera Controls</PrimaryButton>
+        <div className="info-block2">
+          <PrimaryButton name="camera-button-style" style={divStylebutton} onClick={this.state.recording=true}>Native Camera Controls </PrimaryButton>
           <br/>
           <DefaultButton name="camera-button-style" style={divStylebutton}>Live Camera Feed</DefaultButton>
           <br/>
@@ -64,19 +85,16 @@ class CamInfo extends React.Component {
           
         </div>
         <div className="player-wrapper" style={wrapperstyle}>
-          <Player
-            style = {playerstyle}
-            width = "100%"
-            height = "100%"
-
-            poster="/assets/poster.png"
-            src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-          />
+          
+          <img id="motionjpeg" src={this.props.url} style={wrapperstyle} width = "90%" height = "90%"/>
+           
         </div>
+        
       
       </div>
-      <div style={textstyle}>Advanced Information</div>
       <Grid style={blockstyle}>
+        <div style={textstyle}>Advanced Information</div>
+
           <FlexCol fixed>
             <div className="info-block">
               <p>IP address: </p>

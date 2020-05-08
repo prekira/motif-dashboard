@@ -1,19 +1,5 @@
-from flask import Flask, request
-from motifapi import MotifApi
-import time
-import cv2
-# IP_ADDRESS = '172.22.131.181'
-
-IP_ADDRESS = '172.22.131.188'
-
-# API_KEY = '41262ae1b0d74d929f6fa4300f3b8651'
-API_KEY = '0b2517fec0a64a51ae9f3528b38bed49'
-
-
-api = MotifApi(IP_ADDRESS, API_KEY)
-
 # get serial number of first connected camera
-camsn = '193500097'#api.call('cameras')['cameras'][0]['serial']
+camsn = api.call('cameras')['cameras'][0]['serial']
 
 # start recording on one camera
 print(api.call('camera/%s/recording/start' % camsn,  codec='h264-hq', filename='testing_file',
@@ -25,8 +11,6 @@ print(api.call('camera/%s/recording/stop' % camsn))
 # wait for recording to finish (sometimes need to flush the buffer, close video, etc)
 while api.is_recording(camsn):
     print('%s still recording' % camsn)
-    response = api.call('camera/%s' % camsn)
-    print(response)
     time.sleep(1)
 
 # in a multi-camera environment you should record to stores as these allow synchronization and
@@ -46,6 +30,8 @@ while any(api.is_recording(_sn) for _sn in camera_serials):
 # list all recordings
 print(api.call('recordings'))
 
-
-print('finished')
-
+# Copy all recordings to the configured storage location
+print(api.call('recordings/copy_all', delete_after=True))  # if true, delete files after successful copy
+while any(api.is_copying(_sn) for _sn in camera_serials):
+    print('still copying')
+    time.sleep(1)
