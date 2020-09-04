@@ -1,20 +1,34 @@
-import React, {Component} from 'react';
-import Notifications from './Notifications'
-import ProjectList from './ProjectList'
-import { Button, ModalFooter } from 'reactstrap';
-import CameraComponent from './CameraComponent';
-import UnitComponent from './Unit_component';
-import {Container, Row, Col } from 'reactstrap';
-import Settings from './Settings';
-import MotifTest from './MotifTest';
+import React from 'react';
 
+/**
+ * Added as per request to have separate view to allow every operant camera feed to show up in one page
+ */
 class OperantMultiView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+  
   render() {
-    return(<UnitComponent  start_id={20}/>);
+    return(
+      <div>
+        <h3>Operant Cameras</h3>
+        <div>
+        <iframe src={"http://172.22.131.187:8354/stream"} />
+          <iframe src={"http://172.22.131.187:8372/stream"} />
+          <iframe src={"http://172.22.131.187:8345/stream"} />
+        </div>
+        <div>
+        <iframe src={"http://172.22.131.187:8336/stream"} />
+        <iframe src={"http://172.22.131.187:8327/stream"} />
+        <iframe src={"http://172.22.131.187:8309/stream"} />
+        </div>
+        <div>
+        <iframe src={"http://172.22.131.187:8318/stream"} />
+        <iframe src={"http://172.22.131.187:8363/stream"} />
+        </div>
+      </div>
+    );
   }
   
 

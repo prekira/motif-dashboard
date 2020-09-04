@@ -1,7 +1,12 @@
 import React from 'react';
 import { Button } from 'reactstrap';
-import CameraComponent from './CameraComponent';
+import CsvParser from './CsvParser';
 
+/**
+ * Settings Panel
+ * Contains component to upload CSV
+ * TODO: add functionality to buttons and use to make mass changes to cameras using motif
+ */
 class Settings extends React.Component {
   constructor(props) {
     super();
@@ -41,7 +46,8 @@ class Settings extends React.Component {
     return (
      <div className="Settings">
        <br/>
-      <Button name="upload-settings" style={divStylebutton}>Upload Settings</Button>
+       <CsvParser style={divStylebutton}>Upload Settings</CsvParser>
+      
       <br/>
       <h2>Settings</h2>
 
@@ -67,8 +73,6 @@ class Settings extends React.Component {
       <br/>
 
       <Button name="upload-settings" style={divStylebutton}>Apply to Operant Chambers</Button>
-
-
       
     </div>
     );
@@ -77,35 +81,3 @@ class Settings extends React.Component {
 }
 
 export default Settings;
-
-/*
-constructor(props) {
-  super();
-  this.id = props.id;
-
-  this.state = {
-    selectedCam: false
-  } 
-  this.handleInputChange = this.handleInputChange.bind(this);
-}
-//if camera checked, register change
-handleInputChange() {
-  this.setState({
-    selectedCam: !this.state.selectedCam
-  });
- 
-}
-render() {
-  
- // const CameraComponent = props => <h1>{props.id}</h1>;
-  
-  return (
-    <div className="camera-button">
-      <Button className="camera-button-style">Cam: {this.props.id} </Button>{' '}
-      <input name="selectCam" type="checkbox" defaultChecked={this.state.selectedCam} onChange={this.handleInputChange}/>
-    </div>
-  );
-}
-
-
-}*/

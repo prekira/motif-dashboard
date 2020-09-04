@@ -1,13 +1,19 @@
 import React from 'react';
 import { Button } from 'reactstrap';
-import PopUp from './popUp';
+import CameraDetailFlyout from './CameraDetailFlyout';
 
 
-
+/**
+ * Contains button with camera flyout, as well as recording status button and number.
+ * TODO: updating recording status button using Motif
+ */
 class CameraComponent extends React.Component {
   constructor(props) {
     super();
     this.id = props.id;
+    this.type_name = props.type_name;
+    this.serial = props.serial;
+    this.ip = props.ip;
 
     this.state = {
       selectedCam: false,
@@ -19,13 +25,13 @@ class CameraComponent extends React.Component {
   handleInputChange() {
     this.setState({
       selectedCam: !this.state.selectedCam,
-      // //below is temporary just to test dynamic rendering of colors
-      // isRecording: !this.state.isRecording
+      // below is temporary just to test dynamic rendering of colors
+        isRecording: !this.state.isRecording
     });
    
   }
   myColor() {
-    if (this.state.isRecording === true) {
+    if (this.state.isRecording === true ) {
       return "#45ba45";
     }
     return "#ba4545";
@@ -48,14 +54,13 @@ class CameraComponent extends React.Component {
       width: "8px",
       borderRadius: "10px"
     };
-   // const CameraComponent = props => <h1>{props.id}</h1>;
     
     return (
       <div className="camstats">
         <input name="selectCam" type="checkbox" defaultChecked={this.state.selectedCam} onChange={this.handleInputChange} style={divStylebutton2}/>
         <Button style={{color: this.myColor()},divStylebutton}> </Button>{' '}
         <div>
-        <PopUp name={"Cam: "+this.props.id} ></PopUp>
+        <CameraDetailFlyout name={"Cam: "+this.props.id} ip={this.props.ip} serial={this.props.serial}></CameraDetailFlyout>
         </div>
       </div>
     );
